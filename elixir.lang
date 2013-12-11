@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<language id="elixir" _name="Elixir" version="2.0" _section="Sources">
+
+  <metadata>
+   <property name="mimetypes">text/x-elixir</property>
+   <property name="globs">*.exs;*.ex</property>
+   <property name="line-comment-start">#</property>
+  </metadata>
+
+  <styles>
+    <style id="comment"              _name="Comment"                  map-to="def:comment"/>
+    <style id="atom"                 _name="Atom"                     map-to="def:type"/>
+    <style id="keyword"              _name="Keyword"                  map-to="def:type"/>
+    <style id="sigil"                _name="Sigil"                    map-to="def:type"/>
+    <style id="charcode"             _name="Charcode"                 map-to="def:character"/>
+    <style id="string"               _name="String"                   map-to="def:string"/>
+    <style id="string-interpolation" _name="String interpolation"     map-to="def:special-char"/>
+    <style id="character"            _name="Character"                map-to="def:character"/>
+    <style id="floating-point"       _name="Floating point number"    map-to="def:floating-point"/>
+    <style id="base-n-integer"       _name="Base-N Integer"           map-to="def:base-n-integer"/>
+    <style id="decimal"              _name="Decimal number"           map-to="def:decimal"/>
+    <style id="boolean"              _name="Boolean"                  map-to="def:type"/>
+    <style id="module"               _name="Module"                   map-to="def:preprocessor"/>
+    <style id="builtin-name"         _name="Builtin Name"             map-to="def:keyword"/>
+    <style id="attribute"            _name="Attribute"                map-to="def:builtin"/>
+  </styles>
+
+  <definitions>
+    <context id="line-comment" style-ref="comment" end-at-line-end="true" class="comment" class-disabled="no-spell-check">
+      <start>#</start>
+      <include>
+        <context ref="def:in-line-comment"/>
+      </include>
+    </context>
+
+    <context id="module" style-ref="module">
+      <match extended="true">
+        (?&lt;![\w])[A-Z](\w+)*
+      </match>
+    </context>
+
+    <context id="atom" style-ref="atom">
+      <match extended="true">
+        \:[a-zA-Z_](\w+)*(!|\?)?
+      </match>
+    </context>
+
+    <context id="charcode" style-ref="charcode">
+      <match extended="true">
+        (?&lt;![\w\.])
+        \?.
+        (?![\w\.])
+     </match>
+    </context>
+
+    <context id="keyword" style-ref="keyword">
+      <match extended="true">
+        (?&lt;![\w\.])[a-zA-Z_]*(\w+)*(!|\?)?\:
+      </match>
+    </context>
+
+    <context id="sigil" style-ref="sigil">
+      <match extended="true">%[bcrwBCRW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;)</match>
+    </context>
+
+    <context id="string-interpolation" style-ref="string-interpolation" extend-parent="false">
+      <match extended="true">
+        \#{.*?}
+      </match>
+    </context>
+
+    <context id="string-double-quote" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="string-interpolation"/>
+      </include>
+    </context>
+
+    <context id="string-single-quote" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>'</start>
+      <end>'</end>
+      <include>
+        <context ref="def:escape"/>
+        <context ref="string-interpolation"/>
+      </include>
+    </context>
+
+    <context id="multiline-double-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>"""</start>
+      <end>^\s*"""</end>
+      <include>
+        <context ref="def:escape"/>
+      </include>
+    </context>
+
+    <context id="multiline-single-quoted-string" style-ref="string" class="string" class-disabled="no-spell-check">
+      <start>'''</start>
+      <end>^\s*'''</end>
+      <include>
+        <context ref="def:escape"/>
+      </include>
+    </context>
+
+    <context id="character" style-ref="character" class="character" class-disabled="no-spell-check">
+      <match>\$(?:(\\.)|.)</match>
+      <include>
+        <context sub-pattern="1" style-ref="def:special-char"/>
+      </include>
+    </context>
+
+    <context id="float" style-ref="floating-point">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="base-n-number" style-ref="base-n-integer">
+      <match extended="true">
+        (?&lt;![\w\.])
+        0[xXbB]?[0-9a-fA-F]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="decimal-number" style-ref="decimal">
+      <match extended="true">
+        (?&lt;![\w\.])
+        [0-9]+
+        (?![\w\.])
+      </match>
+    </context>
+
+    <context id="kernel" style-ref="builtin-name">
+      <keyword>(abs|trunc|rem|div|round)</keyword>
+      <keyword>(and|or|not|xor)</keyword>
+      <keyword>(try|throw|raise)</keyword>
+      <keyword>(hd|tl|length|elem|size)</keyword>
+      <keyword>(delete|insert|set)_elem</keyword>
+      <keyword>tuple_size</keyword>
+      <keyword>max|min</keyword> 
+      <keyword>apply</keyword>
+      <keyword>(atom|float|integer)_to_(binary|list)</keyword>
+      <keyword>binary_part</keyword>
+      <keyword>binary_to_(atom|existing_atom|float|integer|list|term)</keyword>
+      <keyword>bitstring_to_list</keyword>
+      <keyword>(bit|byte)_size</keyword>
+      <keyword>def</keyword>
+      <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
+      <keyword>exit</keyword>
+      <keyword>function_exported\?</keyword>
+      <keyword>if|unless|else|case|cond</keyword>
+      <keyword>inspect</keyword>
+      <keyword>iolist_(size|to_binary)</keyword>
+      <keyword>is_(alive|atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
+      <keyword>list_to_(atom|binary|bitstring|existing_atom|flot|integer|pid|tuple)</keyword>
+      <keyword>(pid|tuple)_to_list</keyword>
+      <keyword>receive</keyword>
+      <keyword>use</keyword>
+      <keyword>macro_exported\?</keyword>
+      <keyword>make_ref</keyword>
+      <keyword>node</keyword>
+      <keyword>self</keyword>
+      <keyword>spawn</keyword>
+      <keyword>spawn_link</keyword>
+      <keyword>term_to_binary</keyword>
+      <keyword>access</keyword>
+      <keyword>binding</keyword>
+      <keyword>destructure</keyword>
+      <keyword>(lc|in|inlist|inbits)</keyword>
+      <keyword>match\?</keyword>
+      <keyword>nil\?</keyword>
+      <keyword>sigil_[BCRWbcrw]</keyword>
+      <keyword>to_(string|char_list)</keyword>
+      <keyword>(test|setup|setup_all|teardown|teardown_all|assert|refute|doctest)</keyword>
+    </context>
+
+    <context id="attributes" style-ref="attribute">
+      <match extended="true">
+        \@[a-zA-Z_](\w+)*
+      </match>
+    </context>
+
+    <context id="builtin-names" style-ref="builtin-name">
+      <keyword>do</keyword>
+      <keyword>end</keyword>
+      <keyword>fn</keyword>
+      <keyword>when</keyword>
+      <keyword>else</keyword>
+      <keyword>after</keyword>
+      <keyword>catch</keyword>
+      <keyword>rescue</keyword>
+      <keyword>alias</keyword>
+      <keyword>as</keyword>
+      <keyword>require</keyword>
+      <keyword>import</keyword>
+      <keyword>only</keyword>
+      <keyword>quote</keyword>
+      <keyword>unquote</keyword>
+
+      <keyword>__FILE__</keyword>
+      <keyword>__DIR__</keyword>
+      <keyword>__MODULE__</keyword>
+      <keyword>__ENV__</keyword>
+      <keyword>__CALLER__</keyword>
+      <keyword>__LINE__</keyword>
+    </context>
+
+    <context id="boolean" style-ref="boolean">
+      <keyword>true</keyword>
+      <keyword>false</keyword>
+	  <keyword>nil</keyword>
+    </context>
+
+    <!--Main context-->
+    <context id="elixir" class="no-spell-check">
+      <include>
+        <context ref="def:shebang"/>
+        <context ref="line-comment"/>
+        <context ref="atom"/>
+        <context ref="sigil"/>
+        <context ref="charcode"/>
+        <context ref="multiline-double-quoted-string"/>
+        <context ref="multiline-single-quoted-string"/>
+        <context ref="string-double-quote"/>
+        <context ref="string-single-quote"/>
+        <context ref="character"/>
+        <context ref="float"/>
+        <context ref="base-n-number"/>
+        <context ref="decimal-number"/>
+        <context ref="module"/>
+        <context ref="builtin-names"/>        
+        <context ref="keyword"/>
+        <context ref="kernel"/> 
+        <context ref="attributes"/>        
+        <context ref="boolean"/>
+      </include>
+    </context>
+
+  </definitions>
+
+</language>
+
