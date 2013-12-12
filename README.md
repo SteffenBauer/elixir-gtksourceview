@@ -16,13 +16,13 @@ Replace 'X.X' with your version of GtkSourceView.
 gedit and other tools using GtkSourceView should then show Elixir syntax highlighting.
 
 
-# License
+### License
 
 This language definition file is licensed under the Lesser GNU Lesser General Public License 3.0.
 
 A copy can be obtained at:
 
-http://www.gnu.org/licenses/lgpl-3.0.de.html
+http://www.gnu.org/licenses/lgpl-3.0.html
 
 This language definition file is to be used with GtkSourceView
 
