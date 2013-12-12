@@ -7,9 +7,9 @@ GtkSourceView syntax highlighting for the Elixir programming language
 
 Copy elixir.lang into one of these directories: 
 
-~/.local/share/gtksourceview-X.X/language-specs/
-/usr/local/share/gtksourceview-X.X/language-specs/
-/usr/share/gtksourceview-X.X/language-specs/
+ * ~/.local/share/gtksourceview-X.X/language-specs/
+ * /usr/local/share/gtksourceview-X.X/language-specs/
+ * /usr/share/gtksourceview-X.X/language-specs/
 
 Replace 'X.X' with your version of GtkSourceView.
 
