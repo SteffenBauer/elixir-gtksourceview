@@ -132,7 +132,7 @@
       </context>
 
       <context id="attributes" style-ref="attribute">
-        <match extended="true">\@[a-zA-Z_](\w)*</match>
+        <match extended="true">(?&lt;![\w\.])\@[a-zA-Z_](\w)*</match>
       </context>
 
       <context id="boolean" style-ref="boolean">
@@ -145,75 +145,63 @@
         <match extended="true">(?&lt;![\w])[A-Z](\w)*</match>
       </context>
 
-      <context id="builtin-names" style-ref="builtin-name">
+      <context id="builtins" style-ref="builtin-name">
         <keyword>do</keyword>
-        <keyword>end</keyword>
-        <keyword>fn</keyword>
         <keyword>when</keyword>
-        <keyword>else</keyword>
-        <keyword>after</keyword>
-        <keyword>catch</keyword>
-        <keyword>rescue</keyword>
-        <keyword>alias</keyword>
-        <keyword>as</keyword>
-        <keyword>require</keyword>
-        <keyword>import</keyword>
-        <keyword>only</keyword>
-        <keyword>quote</keyword>
-        <keyword>unquote</keyword>
+        <keyword>end</keyword>
+      </context>
 
-        <keyword>__FILE__</keyword>
+      <context id="SpecialForms" style-ref="builtin-name">
+        <keyword>alias|import|require</keyword>
+        <keyword>case</keyword>
+        <keyword>fn</keyword>
+        <keyword>receive|after</keyword>
+        <keyword>try|catch|rescue</keyword>
+        <keyword>super</keyword>
+        <keyword>quote|unquote|unquote_splicing</keyword>
+        <keyword>bc|lc|inlist|inbits</keyword>
+
         <keyword>__DIR__</keyword>
-        <keyword>__MODULE__</keyword>
         <keyword>__ENV__</keyword>
+        <keyword>__FILE__</keyword>
+        <keyword>__MODULE__</keyword>
         <keyword>__CALLER__</keyword>
-        <keyword>__LINE__</keyword>
+        <keyword>__aliases__</keyword>
+        <keyword>__block__</keyword>
       </context>
 
       <context id="kernel" style-ref="builtin-name">
-        <keyword>(abs|trunc|rem|div|round)</keyword>
-        <keyword>(and|or|not|xor)</keyword>
-        <keyword>(try|throw|raise)</keyword>
-        <keyword>(hd|tl|length|elem|size)</keyword>
-        <keyword>(delete|insert|set)_elem</keyword>
-        <keyword>tuple_size</keyword>
-        <keyword>max|min</keyword> 
-        <keyword>apply</keyword>
+        <keyword>abs|trunc|rem|div|round|max|min</keyword>
+        <keyword>and|or|not|xor</keyword>
+        <keyword>throw|raise</keyword>
+        <keyword>hd|tl|in|length|elem|set_elem|size|access|destructure</keyword>
         <keyword>(atom|float|integer)_to_(binary|list)</keyword>
-        <keyword>binary_part</keyword>
-        <keyword>binary_to_(atom|existing_atom|float|integer|list|term)</keyword>
-        <keyword>bitstring_to_list</keyword>
-        <keyword>(bit|byte)_size</keyword>
-        <keyword>def</keyword>
-        <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
-        <keyword>exit</keyword>
-        <keyword>function_exported\?</keyword>
-        <keyword>if|unless|else|case|cond</keyword>
-        <keyword>inspect</keyword>
-        <keyword>iolist_(size|to_binary)</keyword>
-        <keyword>is_(alive|atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
-        <keyword>list_to_(atom|binary|bitstring|existing_atom|flot|integer|pid|tuple)</keyword>
-        <keyword>(pid|tuple)_to_list</keyword>
-        <keyword>receive</keyword>
-        <keyword>use</keyword>
-        <keyword>macro_exported\?</keyword>
-        <keyword>make_ref</keyword>
-        <keyword>node</keyword>
-        <keyword>self</keyword>
-        <keyword>spawn</keyword>
-        <keyword>spawn_link</keyword>
-        <keyword>term_to_binary</keyword>
-        <keyword>access</keyword>
-        <keyword>binding</keyword>
-        <keyword>destructure</keyword>
-        <keyword>(lc|in|inlist|inbits)</keyword>
-        <keyword>match\?</keyword>
-        <keyword>nil\?</keyword>
-        <keyword>sigil_[BCRWbcrw]</keyword>
+        <keyword>binary_to_(atom|existing_atom|float|integer|term)</keyword>
+        <keyword>list_to_(atom|bitstring|existing_atom|float|integer|tuple)</keyword>
+        <keyword>(bitstring|tuple)_to_list</keyword>
+        <keyword>(iolist|term)_to_binary</keyword>
         <keyword>to_(string|char_list)</keyword>
-        <keyword>(test|setup|setup_all|teardown|teardown_all|assert|refute|doctest)</keyword>
+        <keyword>is_(alive|atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
+        <keyword>(bit|byte|iolist|tuple)_size</keyword>
+        <keyword>binary_part</keyword>
+        <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
+        <keyword>sigil_[CRSWcrsw]</keyword>
+        <keyword>if|else|unless|cond</keyword>
+        <keyword>(function|macro)_exported</keyword>
+        <keyword>match|binding</keyword>
+        <keyword>node|self|spawn|spawn_link|exit</keyword>
+        <keyword>apply</keyword>
+        <keyword>inspect</keyword>
+        <keyword>make_ref</keyword>
+        <keyword>use</keyword>
       </context>
-
+      
+      <context id="exunit" style-ref="builtin-name">
+        <keyword>(test|doctest)</keyword>
+        <keyword>(setup|setup_all|teardown|teardown_all)</keyword>
+        <keyword>(assert|refute)</keyword>
+      </context>
+      
       <context id="keyword" style-ref="keyword">
         <match extended="true">
           (?&lt;![\w\.])[a-zA-Z_]*(\w)*(!|\?)?\:

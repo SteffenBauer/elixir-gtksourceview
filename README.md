@@ -1,7 +1,9 @@
 elixir-gtksourceview
 ====================
 
-GtkSourceView syntax highlighting for the Elixir programming language
+GtkSourceView syntax highlighting for the [Elixir programming language](http://elixir-lang.org/)
+
+Covers Elixir version 0.12.0
 
 ## Usage: 
 
@@ -18,9 +20,9 @@ gedit and other tools using GtkSourceView should then show Elixir syntax highlig
 
 ### License
 
-This language definition file is licensed under the Lesser GNU Lesser General Public License 3.0.
+This language definition file is licensed under the GNU Lesser General Public License 3.0.
 
-A copy can be obtained at:
+A copy is provided with this package (see LICENSE) or can be obtained at:
 
 http://www.gnu.org/licenses/lgpl-3.0.html
 
