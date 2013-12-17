@@ -85,7 +85,7 @@
       </context>
 
       <context id="atom" style-ref="atom">
-        <match extended="true">\:[a-zA-Z_](\w)*(!|\?)?</match>
+        <match>\:[a-zA-Z_](\w)*(!|\?)?</match>
       </context>
 
       <context id="charcode" style-ref="charcode">
@@ -93,18 +93,15 @@
       </context>
 
       <context id="sigil" style-ref="sigil">
-        <match extended="true">%[bcrwBCRW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;)</match>
+        <match>%[bcrwBCRW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;)[fgimrsux]*</match>
+      </context>
+
+      <context id="capture" style-ref="sigil">
+        <match>\&amp;[0-9]*</match>
       </context>
 
       <context id="string-interpolation" style-ref="string-interpolation" extend-parent="false">
-        <match extended="true">\#{.*?}</match>
-      </context>
-
-      <context id="character" style-ref="character" class="character" class-disabled="no-spell-check">
-        <match>\$(?:(\\.)|.)</match>
-        <include>
-          <context sub-pattern="1" style-ref="def:special-char"/>
-        </include>
+        <match>\#{.*?}</match>
       </context>
 
       <context id="float" style-ref="floating-point">
