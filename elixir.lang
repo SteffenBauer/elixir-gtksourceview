@@ -93,7 +93,7 @@
       </context>
 
       <context id="sigil" style-ref="sigil">
-        <match>%[bcrwBCRW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;)[fgimrsux]*</match>
+        <match>%[crswCRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|/(.)*/)[fgimrsuxbac]*</match>
       </context>
 
       <context id="capture" style-ref="sigil">
@@ -160,7 +160,6 @@
 
         <keyword>__DIR__</keyword>
         <keyword>__ENV__</keyword>
-        <keyword>__FILE__</keyword>
         <keyword>__MODULE__</keyword>
         <keyword>__CALLER__</keyword>
         <keyword>__aliases__</keyword>
@@ -178,7 +177,7 @@
         <keyword>(bitstring|tuple)_to_list</keyword>
         <keyword>(iolist|term)_to_binary</keyword>
         <keyword>to_(string|char_list)</keyword>
-        <keyword>is_(alive|atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
+        <keyword>is_(atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
         <keyword>(bit|byte|iolist|tuple)_size</keyword>
         <keyword>binary_part</keyword>
         <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
@@ -186,7 +185,7 @@
         <keyword>if|else|unless|cond</keyword>
         <keyword>(function|macro)_exported</keyword>
         <keyword>match|binding</keyword>
-        <keyword>node|self|spawn|spawn_link|exit</keyword>
+        <keyword>node|self|spawn|spawn_link|send|exit</keyword>
         <keyword>apply</keyword>
         <keyword>inspect</keyword>
         <keyword>make_ref</keyword>
