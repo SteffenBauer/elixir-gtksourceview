@@ -30,21 +30,21 @@
   </metadata>
 
   <styles>
-    <style id="comment"              _name="Comment"                  map-to="def:comment"/>
-    <style id="atom"                 _name="Atom"                     map-to="def:type"/>
-    <style id="keyword"              _name="Keyword"                  map-to="def:type"/>
-    <style id="sigil"                _name="Sigil"                    map-to="def:type"/>
-    <style id="charcode"             _name="Charcode"                 map-to="def:character"/>
-    <style id="string"               _name="String"                   map-to="def:string"/>
-    <style id="string-interpolation" _name="String interpolation"     map-to="def:special-char"/>
-    <style id="character"            _name="Character"                map-to="def:character"/>
-    <style id="floating-point"       _name="Floating point number"    map-to="def:floating-point"/>
-    <style id="base-n-integer"       _name="Base-N Integer"           map-to="def:base-n-integer"/>
-    <style id="decimal"              _name="Decimal number"           map-to="def:decimal"/>
-    <style id="boolean"              _name="Boolean"                  map-to="def:type"/>
-    <style id="module"               _name="Module"                   map-to="def:preprocessor"/>
-    <style id="builtin-name"         _name="Builtin Name"             map-to="def:keyword"/>
-    <style id="attribute"            _name="Attribute"                map-to="def:builtin"/>
+    <style id="comment"              _name="Comment"               map-to="def:comment"/>
+    <style id="atom"                 _name="Atom"                  map-to="def:type"/>
+    <style id="keyword"              _name="Keyword"               map-to="def:type"/>
+    <style id="sigil"                _name="Sigil"                 map-to="def:type"/>
+    <style id="charcode"             _name="Charcode"              map-to="def:character"/>
+    <style id="string"               _name="String"                map-to="def:string"/>
+    <style id="string-interpolation" _name="String interpolation"  map-to="def:special-char"/>
+    <style id="character"            _name="Character"             map-to="def:character"/>
+    <style id="floating-point"       _name="Floating point number" map-to="def:floating-point"/>
+    <style id="base-n-integer"       _name="Base-N Integer"        map-to="def:base-n-integer"/>
+    <style id="decimal"              _name="Decimal number"        map-to="def:decimal"/>
+    <style id="boolean"              _name="Boolean"               map-to="def:type"/>
+    <style id="module"               _name="Module"                map-to="def:preprocessor"/>
+    <style id="builtin-name"         _name="Builtin Name"          map-to="def:keyword"/>
+    <style id="attribute"            _name="Attribute"             map-to="def:builtin"/>
   </styles>
 
   <definitions>
@@ -62,21 +62,15 @@
       </context>
 
       <context id="string-double-quote" style-ref="string">
-        <start>"</start>
-        <end>"</end>
-        <include>
-          <context ref="def:escape"/>
-          <context ref="string-interpolation"/>
-        </include>
+        <start>"</start> <end>"</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="string-single-quote" style-ref="string">
-        <start>'</start>
-        <end>'</end>
-        <include>
-          <context ref="def:escape"/>
-          <context ref="string-interpolation"/>
-        </include>
+        <start>'</start> <end>'</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="line-comment" style-ref="comment" end-at-line-end="true">
@@ -89,11 +83,59 @@
       </context>
 
       <context id="charcode" style-ref="charcode">
-        <match extended="true">(?&lt;![\w\.])(\?.)(?![\w\.])</match>
+        <match extended="true">(?&lt;![\w\.])((\?.)|(\?\\.))(?![\w\.])</match>
       </context>
 
-      <context id="sigil" style-ref="sigil">
-        <match>%[crswCRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|/(.)*/)[fgimrsuxbac]*</match>
+      <context id="sigil-parentheses-interpolation" style-ref="sigil">
+        <start>%[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-brackets-interpolation" style-ref="sigil">
+        <start>%[crsw]\[</start> <end>\][fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-curly_brackets-interpolation" style-ref="sigil">
+        <start>%[crsw]\{</start> <end>\}[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-chevrons-interpolation" style-ref="sigil">
+        <start>%[crsw]&lt;</start> <end>&gt;[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-pipes-interpolation" style-ref="sigil">
+        <start>%[crsw]\|</start> <end>\|[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-slashes-interpolation" style-ref="sigil">
+        <start>%[crsw]/</start> <end>/[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-double-quotes-interpolation" style-ref="sigil">
+        <start>%[crsw]"</start> <end>"[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-single-quotes-interpolation" style-ref="sigil">
+        <start>%[crsw]'</start> <end>'[fgimrsuxbac]*</end>
+        <include> <context ref="def:escape"/>
+                  <context ref="string-interpolation"/> </include>
+      </context>
+
+      <context id="sigil-without-interpolation" style-ref="sigil">
+        <match>%[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
       </context>
 
       <context id="capture" style-ref="sigil">
@@ -106,25 +148,19 @@
 
       <context id="float" style-ref="floating-point">
         <match extended="true">
-          (?&lt;![\w\.])
-          [0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?
-          (?![\w\.])
+          (?&lt;![\w\.])[0-9]+\.[0-9]+([Ee][+-]?[0-9]+)?(?![\w\.])
         </match>
       </context>
 
       <context id="base-n-number" style-ref="base-n-integer">
         <match extended="true">
-          (?&lt;![\w\.])
-          0[xXbB]?[0-9a-fA-F]+
-          (?![\w\.])
+          (?&lt;![\w\.])0[xXbB]?[0-9a-fA-F]+(?![\w\.])
         </match>
       </context>
 
       <context id="decimal-number" style-ref="decimal">
         <match extended="true">
-          (?&lt;![\w\.])
-          [0-9]+
-          (?![\w\.])
+          (?&lt;![\w\.])[0-9]+(?![\w\.])
         </match>
       </context>
 
@@ -172,16 +208,16 @@
         <keyword>throw|raise</keyword>
         <keyword>hd|tl|in|length|elem|set_elem|size|access|destructure</keyword>
         <keyword>(atom|float|integer)_to_(binary|list)</keyword>
-        <keyword>binary_to_(atom|existing_atom|float|integer|term)</keyword>
+        <keyword>binary_to_(atom|existing_atom|float|integer)</keyword>
         <keyword>list_to_(atom|bitstring|existing_atom|float|integer|tuple)</keyword>
         <keyword>(bitstring|tuple)_to_list</keyword>
-        <keyword>(iolist|term)_to_binary</keyword>
+        <keyword>iolist_to_binary</keyword>
         <keyword>to_(string|char_list)</keyword>
         <keyword>is_(atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
         <keyword>(bit|byte|iolist|tuple)_size</keyword>
         <keyword>binary_part</keyword>
         <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
-        <keyword>sigil_[CRSWcrsw]</keyword>
+        <keyword>sigil_[crswCRSW]</keyword>
         <keyword>if|else|unless|cond</keyword>
         <keyword>(function|macro)_exported</keyword>
         <keyword>match|binding</keyword>
@@ -203,7 +239,6 @@
           (?&lt;![\w\.])[a-zA-Z_]*(\w)*(!|\?)?\:
         </match>
       </context>
-
 
     </include>
     </context>
