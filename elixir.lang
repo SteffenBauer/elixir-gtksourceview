@@ -52,12 +52,12 @@
     <include>
 
       <context id="multiline-double-quoted-string" style-ref="string">
-        <start>"""</start>
+        <start>(%[crswCRSW])?"""</start>
         <end>^\s*"""</end>
       </context>
 
       <context id="multiline-single-quoted-string" style-ref="string">
-        <start>'''</start>
+        <start>(%[crswCRSW])?'''</start>
         <end>^\s*'''</end>
       </context>
 
