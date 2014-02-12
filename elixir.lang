@@ -52,12 +52,12 @@
     <include>
 
       <context id="multiline-double-quoted-string" style-ref="string">
-        <start>(%[crswCRSW])?"""</start>
+        <start>((%|~)[crswCRSW])?"""</start>
         <end>^\s*"""</end>
       </context>
 
       <context id="multiline-single-quoted-string" style-ref="string">
-        <start>(%[crswCRSW])?'''</start>
+        <start>((%|~)[crswCRSW])?'''</start>
         <end>^\s*'''</end>
       </context>
 
@@ -87,55 +87,55 @@
       </context>
 
       <context id="sigil-parentheses-interpolation" style-ref="sigil">
-        <start>%[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-brackets-interpolation" style-ref="sigil">
-        <start>%[crsw]\[</start> <end>\][fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]\[</start> <end>\][fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-curly_brackets-interpolation" style-ref="sigil">
-        <start>%[crsw]\{</start> <end>\}[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]\{</start> <end>\}[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-chevrons-interpolation" style-ref="sigil">
-        <start>%[crsw]&lt;</start> <end>&gt;[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]&lt;</start> <end>&gt;[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-pipes-interpolation" style-ref="sigil">
-        <start>%[crsw]\|</start> <end>\|[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]\|</start> <end>\|[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-slashes-interpolation" style-ref="sigil">
-        <start>%[crsw]/</start> <end>/[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]/</start> <end>/[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-double-quotes-interpolation" style-ref="sigil">
-        <start>%[crsw]"</start> <end>"[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]"</start> <end>"[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-single-quotes-interpolation" style-ref="sigil">
-        <start>%[crsw]'</start> <end>'[fgimrsuxbac]*</end>
+        <start>(%|~)[crsw]'</start> <end>'[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-without-interpolation" style-ref="sigil">
-        <match>%[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
+        <match>(%|~)[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
       </context>
 
       <context id="capture" style-ref="sigil">
