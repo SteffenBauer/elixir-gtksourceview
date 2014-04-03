@@ -50,6 +50,8 @@
   <definitions>
     <context id="elixir" class="no-spell-check">
     <include>
+      <context ref="def:shebang"/>
+      <context ref="def:shell-like-comment"/>
 
       <context id="multiline-double-quoted-string" style-ref="string">
         <start>((%|~)[crswCRSW])?"""</start>
@@ -75,7 +77,7 @@
 
       <context id="line-comment" style-ref="comment" end-at-line-end="true">
         <start>#</start>
-        <include><context ref="def:in-line-comment"/></include>
+        <include> <context ref="def:in-line-comment"/> </include>
       </context>
 
       <context id="atom" style-ref="atom">
@@ -87,55 +89,55 @@
       </context>
 
       <context id="sigil-parentheses-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
+        <start>~[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-brackets-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]\[</start> <end>\][fgimrsuxbac]*</end>
+        <start>~[crsw]\[</start> <end>\][fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-curly_brackets-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]\{</start> <end>\}[fgimrsuxbac]*</end>
+        <start>~[crsw]\{</start> <end>\}[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-chevrons-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]&lt;</start> <end>&gt;[fgimrsuxbac]*</end>
+        <start>~[crsw]&lt;</start> <end>&gt;[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-pipes-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]\|</start> <end>\|[fgimrsuxbac]*</end>
+        <start>~[crsw]\|</start> <end>\|[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-slashes-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]/</start> <end>/[fgimrsuxbac]*</end>
+        <start>~[crsw]/</start> <end>/[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-double-quotes-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]"</start> <end>"[fgimrsuxbac]*</end>
+        <start>~[crsw]"</start> <end>"[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-single-quotes-interpolation" style-ref="sigil">
-        <start>(%|~)[crsw]'</start> <end>'[fgimrsuxbac]*</end>
+        <start>~[crsw]'</start> <end>'[fgimrsuxbac]*</end>
         <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-without-interpolation" style-ref="sigil">
-        <match>(%|~)[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
+        <match>~[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
       </context>
 
       <context id="capture" style-ref="sigil">
@@ -213,7 +215,7 @@
         <keyword>(bitstring|tuple)_to_list</keyword>
         <keyword>iolist_to_binary</keyword>
         <keyword>to_(string|char_list)</keyword>
-        <keyword>is_(atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|range|record|reference|regex|tuple)</keyword>
+        <keyword>is_(atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|record|reference|tuple)</keyword>
         <keyword>(bit|byte|iolist|tuple)_size</keyword>
         <keyword>binary_part</keyword>
         <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
