@@ -21,6 +21,15 @@
  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 -->
+
+<!--
+
+ GtkSourceView Syntax highlighting for the Elixir programming language
+
+ Covers Elixir 0.14.0
+
+-->
+
 <language id="elixir" _name="Elixir" version="2.0" _section="Sources">
 
   <metadata>
@@ -144,6 +153,10 @@
         <match>\&amp;[0-9]*</match>
       </context>
 
+      <context id="struct_map" style-ref="module">
+        <match>%([A-Z](\w)*)?</match>
+      </context>
+
       <context id="string-interpolation" style-ref="string-interpolation" extend-parent="false">
         <match>\#{.*?}</match>
       </context>
@@ -170,12 +183,6 @@
         <match extended="true">(?&lt;![\w\.])\@[a-zA-Z_](\w)*</match>
       </context>
 
-      <context id="boolean" style-ref="boolean">
-        <keyword>true</keyword>
-        <keyword>false</keyword>
-        <keyword>nil</keyword>
-      </context>
-
       <context id="module" style-ref="module">
         <match extended="true">(?&lt;![\w])[A-Z](\w)*</match>
       </context>
@@ -186,6 +193,16 @@
         <keyword>end</keyword>
       </context>
 
+      <context id="kernel_special_chars" style-ref="builtin-name">
+        <match>alias\!|var\!|match\?|nil\?|(\|&gt;)|(\^(?=[\w]+))|(\\{2})|(&amp;{2})|(\|{2})|(-&gt;)</match>
+      </context>
+
+      <context id="boolean" style-ref="boolean">
+        <keyword>true</keyword>
+        <keyword>false</keyword>
+        <keyword>nil</keyword>
+      </context>
+
       <context id="SpecialForms" style-ref="builtin-name">
         <keyword>alias|import|require</keyword>
         <keyword>case</keyword>
@@ -194,12 +211,12 @@
         <keyword>try|catch|rescue</keyword>
         <keyword>super</keyword>
         <keyword>quote|unquote|unquote_splicing</keyword>
-        <keyword>bc|lc|inlist|inbits</keyword>
+        <keyword>for</keyword>
 
+        <keyword>__CALLER__</keyword>
         <keyword>__DIR__</keyword>
         <keyword>__ENV__</keyword>
         <keyword>__MODULE__</keyword>
-        <keyword>__CALLER__</keyword>
         <keyword>__aliases__</keyword>
         <keyword>__block__</keyword>
       </context>
@@ -207,33 +224,32 @@
       <context id="kernel" style-ref="builtin-name">
         <keyword>abs|trunc|rem|div|round|max|min</keyword>
         <keyword>and|or|not|xor</keyword>
-        <keyword>throw|raise</keyword>
-        <keyword>hd|tl|in|length|elem|set_elem|size|access|destructure</keyword>
-        <keyword>(atom|float|integer)_to_(binary|list)</keyword>
-        <keyword>binary_to_(atom|existing_atom|float|integer)</keyword>
-        <keyword>list_to_(atom|bitstring|existing_atom|float|integer|tuple)</keyword>
-        <keyword>(bitstring|tuple)_to_list</keyword>
-        <keyword>iolist_to_binary</keyword>
+        <keyword>throw|raise|reraise</keyword>
+        <keyword>hd|tl|in|length|elem|put_elem|destructure</keyword>
         <keyword>to_(string|char_list)</keyword>
-        <keyword>is_(atom|binary|bitstring|boolean|exception|float|function|integer|list|number|pid|port|record|reference|tuple)</keyword>
-        <keyword>(bit|byte|iolist|tuple)_size</keyword>
+        <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|number|pid|port|reference|tuple)</keyword>
+        <keyword>(bit|byte|map|tuple)_size</keyword>
         <keyword>binary_part</keyword>
-        <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|record|recordp)?</keyword>
+        <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
         <keyword>sigil_[crswCRSW]</keyword>
         <keyword>if|else|unless|cond</keyword>
         <keyword>(function|macro)_exported</keyword>
-        <keyword>match|binding</keyword>
-        <keyword>node|self|spawn|spawn_link|send|exit</keyword>
-        <keyword>apply</keyword>
-        <keyword>inspect</keyword>
-        <keyword>make_ref</keyword>
-        <keyword>use</keyword>
+        <keyword>binding</keyword>
+        <keyword>node|self|spawn|spawn_link|spawn_monitor|send|exit</keyword>
+        <keyword>struct|get_and_update_in|get_in|put_in|update_in</keyword>
+        <keyword>apply|inspect|make_ref|use</keyword>
       </context>
-      
+
       <context id="exunit" style-ref="builtin-name">
         <keyword>(test|doctest)</keyword>
-        <keyword>(setup|setup_all|teardown|teardown_all)</keyword>
-        <keyword>(assert|refute)</keyword>
+        <keyword>assert(_in_delta|_raise|_receive|_received)?</keyword>
+        <keyword>refute(_in_delta|_receive|_received)?</keyword>
+        <keyword>flunk</keyword>
+        <keyword>catch(_error|_exit|_throw)</keyword>
+        <keyword>setup(_all)?</keyword>
+        <keyword>teardown(_all)?</keyword>
+        <keyword>on_exit</keyword>
+        <keyword>capture_io</keyword>
       </context>
       
       <context id="keyword" style-ref="keyword">
