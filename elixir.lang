@@ -149,6 +149,12 @@
         <match>~[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
       </context>
 
+      <context id="kernel_special_chars" style-ref="builtin-name">
+        <match extended="true">
+          (\s|^)(alias|var)\!|(\s|^)(match|nil|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
+        </match>
+      </context>
+
       <context id="capture" style-ref="sigil">
         <match>\&amp;[0-9]*</match>
       </context>
@@ -193,10 +199,6 @@
         <keyword>end</keyword>
       </context>
 
-      <context id="kernel_special_chars" style-ref="builtin-name">
-        <match>alias\!|var\!|match\?|nil\?|(\|&gt;)|(\^(?=[\w]+))|(\\{2})|(&amp;{2})|(\|{2})|(-&gt;)</match>
-      </context>
-
       <context id="boolean" style-ref="boolean">
         <keyword>true</keyword>
         <keyword>false</keyword>
@@ -233,7 +235,6 @@
         <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
         <keyword>sigil_[crswCRSW]</keyword>
         <keyword>if|else|unless|cond</keyword>
-        <keyword>(function|macro)_exported</keyword>
         <keyword>binding</keyword>
         <keyword>node|self|spawn|spawn_link|spawn_monitor|send|exit</keyword>
         <keyword>struct|get_and_update_in|get_in|put_in|update_in</keyword>
