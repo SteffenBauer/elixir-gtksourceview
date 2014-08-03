@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 0.14.0
+ Covers Elixir 0.15.0
 
 -->
 
@@ -175,7 +175,7 @@
 
       <context id="base-n-number" style-ref="base-n-integer">
         <match extended="true">
-          (?&lt;![\w\.])0[xXbB]?[0-9a-fA-F]+(?![\w\.])
+          (?&lt;![\w\.])0[oxb]?[0-9a-fA-F]+(?![\w\.])
         </match>
       </context>
 
