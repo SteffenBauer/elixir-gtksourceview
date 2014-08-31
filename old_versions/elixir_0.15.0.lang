@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.0.0
+ Covers Elixir 0.15.0
 
 -->
 
@@ -151,7 +151,7 @@
 
       <context id="kernel_special_chars" style-ref="builtin-name">
         <match extended="true">
-          (\s|^)(alias|var)\!|(\s|^)(match|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
+          (\s|^)(alias|var)\!|(\s|^)(match|nil|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
         </match>
       </context>
 
@@ -225,11 +225,11 @@
 
       <context id="kernel" style-ref="builtin-name">
         <keyword>abs|trunc|rem|div|round|max|min</keyword>
-        <keyword>and|or|not</keyword>
+        <keyword>and|or|not|xor</keyword>
         <keyword>throw|raise|reraise</keyword>
         <keyword>hd|tl|in|length|elem|put_elem|destructure</keyword>
         <keyword>to_(string|char_list)</keyword>
-        <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|nil|number|pid|port|reference|tuple)</keyword>
+        <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|number|pid|port|reference|tuple)</keyword>
         <keyword>(bit|byte|map|tuple)_size</keyword>
         <keyword>binary_part</keyword>
         <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
