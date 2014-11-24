@@ -1,9 +1,10 @@
 elixir-gtksourceview
 ====================
+![gedit](https://raw.githubusercontent.com/SteffenBauer/elixir-gtksourceview/master/elixir_gedit.png)
 
 GtkSourceView syntax highlighting for the [Elixir programming language](http://elixir-lang.org/)
 
-Covers Elixir version 1.0.0
+Covers Elixir version 1.0.X
 
 ## Usage: 
 
