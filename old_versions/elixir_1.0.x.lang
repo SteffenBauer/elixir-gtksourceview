@@ -4,7 +4,7 @@
  This file is to be used with GtkSourceView
 
  Author: Steffen Bauer <steffen.aus.karlsruhe@gmail.com>
- Copyright (C) 2013-2015 Steffen Bauer
+ Copyright (C) 2013-2014 Steffen Bauer
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.1.x
+ Covers Elixir 1.0.x
 
 -->
 
@@ -46,7 +46,6 @@
     <style id="charcode"             _name="Charcode"              map-to="def:character"/>
     <style id="string"               _name="String"                map-to="def:string"/>
     <style id="string-interpolation" _name="String interpolation"  map-to="def:special-char"/>
-    <style id="codepoint"            _name="Codepoint"             map-to="def:special-char"/>
     <style id="character"            _name="Character"             map-to="def:character"/>
     <style id="floating-point"       _name="Floating point number" map-to="def:floating-point"/>
     <style id="base-n-integer"       _name="Base-N Integer"        map-to="def:base-n-integer"/>
@@ -75,15 +74,13 @@
 
       <context id="string-double-quote" style-ref="string">
         <start>"</start> <end>"</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="string-single-quote" style-ref="string">
         <start>'</start> <end>'</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
@@ -100,63 +97,51 @@
         <match extended="true">(?&lt;![\w\.])((\?.)|(\?\\.))(?![\w\.])</match>
       </context>
 
-      <context id="codepoint" style-ref="codepoint" extend-parent="false">
-        <match>\\u(([0-9a-fA-F]){4}|({[0-9a-fA-F]{1,6}}))</match>
-      </context>
-
       <context id="sigil-parentheses-interpolation" style-ref="sigil">
         <start>~[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-brackets-interpolation" style-ref="sigil">
         <start>~[crsw]\[</start> <end>\][fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-curly_brackets-interpolation" style-ref="sigil">
         <start>~[crsw]\{</start> <end>\}[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-chevrons-interpolation" style-ref="sigil">
         <start>~[crsw]&lt;</start> <end>&gt;[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-pipes-interpolation" style-ref="sigil">
         <start>~[crsw]\|</start> <end>\|[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-slashes-interpolation" style-ref="sigil">
         <start>~[crsw]/</start> <end>/[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-double-quotes-interpolation" style-ref="sigil">
         <start>~[crsw]"</start> <end>"[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
       <context id="sigil-single-quotes-interpolation" style-ref="sigil">
         <start>~[crsw]'</start> <end>'[fgimrsuxbac]*</end>
-        <include> <context ref="codepoint"/>
-                  <context ref="def:escape"/>
+        <include> <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
 
@@ -257,7 +242,7 @@
       </context>
 
       <context id="exunit" style-ref="builtin-name">
-        <keyword>(doc)?test</keyword>
+        <keyword>(test|doctest)</keyword>
         <keyword>assert(_in_delta|_raise|_receive|_received)?</keyword>
         <keyword>refute(_in_delta|_receive|_received)?</keyword>
         <keyword>flunk</keyword>
@@ -265,7 +250,6 @@
         <keyword>setup(_all)?</keyword>
         <keyword>on_exit</keyword>
         <keyword>capture_io</keyword>
-        <keyword>using</keyword>
       </context>
       
       <context id="keyword" style-ref="keyword">

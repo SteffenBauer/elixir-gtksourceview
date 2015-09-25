@@ -4,20 +4,23 @@ elixir-gtksourceview
 
 GtkSourceView syntax highlighting for the [Elixir programming language](http://elixir-lang.org/)
 
-Covers Elixir version 1.0.X
+Covers Elixir version 1.1.X
 
 ## Usage: 
 
-Copy elixir.lang into one of these directories: 
+Copy `elixir.lang` into one of these directories: 
 
- * ~/.local/share/gtksourceview-X.X/language-specs/
- * /usr/local/share/gtksourceview-X.X/language-specs/
- * /usr/share/gtksourceview-X.X/language-specs/
+ * `~/.local/share/gtksourceview-X.X/language-specs/`
+ * `/usr/local/share/gtksourceview-X.X/language-specs/`
+ * `/usr/share/gtksourceview-X.X/language-specs/`
 
 Replace 'X.X' with your version of GtkSourceView.
 
-gedit and other tools using GtkSourceView should then show Elixir syntax highlighting.
+_gedit_ and other tools using GtkSourceView should then show Elixir syntax highlighting.
 
+Version for older Elixir releases can be found in `old_versions`
+
+Have also a look at [elixir-ctags](https://github.com/mmorearty/elixir-ctags) to further enhance your gedit experience when writing Elixir code.
 
 ### License
 
