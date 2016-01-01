@@ -4,7 +4,7 @@
  This file is to be used with GtkSourceView
 
  Author: Steffen Bauer <steffen.aus.karlsruhe@gmail.com>
- Copyright (C) 2013-2015 Steffen Bauer
+ Copyright (C) 2013-2016 Steffen Bauer
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.1.x
+ Covers Elixir 1.2.x
 
 -->
 
