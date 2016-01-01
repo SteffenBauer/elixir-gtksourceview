@@ -166,7 +166,7 @@
 
       <context id="kernel_special_chars" style-ref="builtin-name">
         <match extended="true">
-          (\s|^)(alias|var|struct)\!|(\s|^)(match|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
+          (\s|^)(alias|var)\!|(\s|^)(match|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
         </match>
       </context>
 
@@ -229,7 +229,6 @@
         <keyword>super</keyword>
         <keyword>quote|unquote|unquote_splicing</keyword>
         <keyword>for</keyword>
-        <keyword>with</keyword>
 
         <keyword>__CALLER__</keyword>
         <keyword>__DIR__</keyword>

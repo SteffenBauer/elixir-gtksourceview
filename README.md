@@ -4,7 +4,7 @@ elixir-gtksourceview
 
 GtkSourceView syntax highlighting for the [Elixir programming language](http://elixir-lang.org/)
 
-Covers Elixir version 1.1.X
+Covers Elixir version 1.2.x
 
 ## Usage: 
 
@@ -18,7 +18,7 @@ Replace 'X.X' with your version of GtkSourceView.
 
 _gedit_ and other tools using GtkSourceView should then show Elixir syntax highlighting.
 
-Version for older Elixir releases can be found in `old_versions`
+Versions for older Elixir releases can be found in `old_versions`
 
 Have also a look at [elixir-ctags](https://github.com/mmorearty/elixir-ctags) to further enhance your gedit experience when writing Elixir code.
 
