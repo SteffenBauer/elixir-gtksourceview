@@ -4,7 +4,7 @@ elixir-gtksourceview
 
 GtkSourceView syntax highlighting for the [Elixir programming language](http://elixir-lang.org/)
 
-Covers Elixir version 1.2.x
+Covers Elixir version 1.3.x
 
 ## Usage: 
 
@@ -21,6 +21,9 @@ _gedit_ and other tools using GtkSourceView should then show Elixir syntax highl
 Versions for older Elixir releases can be found in `old_versions`
 
 Have also a look at [elixir-ctags](https://github.com/mmorearty/elixir-ctags) to further enhance your gedit experience when writing Elixir code.
+
+## Please note:
+I reorganized the language definition file in order to include an experimental setup. It should now highlight ExUnit language elements only in the according context of elixir unit testing files. Please submit an issue report should you encounter any problems.
 
 ### License
 

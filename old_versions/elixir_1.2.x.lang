@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.3.x
+ Covers Elixir 1.2.x
 
 -->
 
@@ -58,16 +58,18 @@
   </styles>
 
   <definitions>
-
-    <context id="quoted-string">
+    <context id="elixir" class="no-spell-check">
     <include>
+      <context ref="def:shebang"/>
+      <context ref="def:shell-like-comment"/>
+
       <context id="multiline-double-quoted-string" style-ref="string">
-        <start>(~[crswCRSWDTN])?"""</start>
+        <start>(~[crswCRSW])?"""</start>
         <end>^\s*"""</end>
       </context>
 
       <context id="multiline-single-quoted-string" style-ref="string">
-        <start>(~[crswCRSWDTN])?'''</start>
+        <start>(~[crswCRSW])?'''</start>
         <end>^\s*'''</end>
       </context>
 
@@ -84,11 +86,24 @@
                   <context ref="def:escape"/>
                   <context ref="string-interpolation"/> </include>
       </context>
-    </include>
-    </context>
 
-    <context id="sigils">
-    <include>
+      <context id="line-comment" style-ref="comment" end-at-line-end="true">
+        <start>#</start>
+        <include> <context ref="def:in-line-comment"/> </include>
+      </context>
+
+      <context id="atom" style-ref="atom">
+        <match>\:[a-zA-Z_](\w)*(!|\?)?</match>
+      </context>
+
+      <context id="charcode" style-ref="charcode">
+        <match extended="true">(?&lt;![\w\.])((\?.)|(\?\\.))(?![\w\.])</match>
+      </context>
+
+      <context id="codepoint" style-ref="codepoint" extend-parent="false">
+        <match>\\u(([0-9a-fA-F]){4}|({[0-9a-fA-F]{1,6}}))</match>
+      </context>
+
       <context id="sigil-parentheses-interpolation" style-ref="sigil">
         <start>~[crsw]\(</start> <end>\)[fgimrsuxbac]*</end>
         <include> <context ref="codepoint"/>
@@ -146,36 +161,9 @@
       </context>
 
       <context id="sigil-without-interpolation" style-ref="sigil">
-        <match>~[CRSWDTN](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
-      </context>
-    </include>
-    </context>
-
-
-    <context id="elixir-std">
-    <include>
-      <context ref="def:shebang"/>
-      <context ref="def:shell-like-comment"/>
-      <context ref="quoted-string"/>
-
-      <context id="line-comment" style-ref="comment" end-at-line-end="true">
-        <start>#</start>
-        <include> <context ref="def:in-line-comment"/> </include>
-      </context>
-      <context id="atom" style-ref="atom">
-        <match>\:[a-zA-Z_](\w)*(!|\?)?</match>
+        <match>~[CRSW](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
       </context>
 
-      <context id="charcode" style-ref="charcode">
-        <match extended="true">(?&lt;![\w\.])((\?.)|(\?\\.))(?![\w\.])</match>
-      </context>
-
-      <context id="codepoint" style-ref="codepoint" extend-parent="false">
-        <match>\\u(([0-9a-fA-F]){4}|({[0-9a-fA-F]{1,6}}))</match>
-      </context>
-
-      <context ref="sigils"/>
-      
       <context id="kernel_special_chars" style-ref="builtin-name">
         <match extended="true">
           (\s|^)(alias|var|struct)\!|(\s|^)(match|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
@@ -256,19 +244,31 @@
         <keyword>and|or|not</keyword>
         <keyword>throw|raise|reraise</keyword>
         <keyword>hd|tl|in|length|elem|put_elem|destructure</keyword>
-        <keyword>to_(string|char_list|charlist)</keyword>
+        <keyword>to_(string|char_list)</keyword>
         <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|nil|number|pid|port|reference|tuple)</keyword>
         <keyword>(bit|byte|map|tuple)_size</keyword>
         <keyword>binary_part</keyword>
         <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
-        <keyword>sigil_[crswCRSWDNT]</keyword>
+        <keyword>sigil_[crswCRSW]</keyword>
         <keyword>if|else|unless|cond</keyword>
         <keyword>binding</keyword>
         <keyword>node|self|spawn|spawn_link|spawn_monitor|send|exit</keyword>
-        <keyword>struct|get_and_update_in|get_in|put_in|pop_in|update_in</keyword>
+        <keyword>struct|get_and_update_in|get_in|put_in|update_in</keyword>
         <keyword>apply|inspect|make_ref|use</keyword>
       </context>
 
+      <context id="exunit" style-ref="builtin-name">
+        <keyword>(doc)?test</keyword>
+        <keyword>assert(_in_delta|_raise|_receive|_received)?</keyword>
+        <keyword>refute(_in_delta|_receive|_received)?</keyword>
+        <keyword>flunk</keyword>
+        <keyword>catch(_error|_exit|_throw)</keyword>
+        <keyword>setup(_all)?</keyword>
+        <keyword>on_exit</keyword>
+        <keyword>capture_io</keyword>
+        <keyword>using</keyword>
+      </context>
+      
       <context id="keyword" style-ref="keyword">
         <match extended="true">
           (?&lt;![\w\.])[a-zA-Z_]*(\w)*(!|\?)?\:
@@ -277,34 +277,6 @@
 
     </include>
     </context>
-
-    <context id="elixir-exunit">
-    <start>ExUnit</start>
-    <include>
-      <context id="exunit" style-ref="builtin-name">
-        <keyword>(doc)?test</keyword>
-        <keyword>describe</keyword>
-        <keyword>assert(_in_delta|_raise|_receive|_received)?</keyword>
-        <keyword>refute(_in_delta|_receive|_received)?</keyword>
-        <keyword>flunk</keyword>
-        <keyword>catch(_error|_exit|_throw)</keyword>
-        <keyword>setup(_all)?</keyword>
-        <keyword>on_exit</keyword>
-        <keyword>capture(_io|_log)</keyword>
-        <keyword>register(_attribute|_test)</keyword>
-        <keyword>using</keyword>
-      </context>
-      <context ref="elixir-std"/>
-    </include>
-    </context>
-
-    <context id="elixir" class="no-spell-check">
-    <include>
-      <context ref="elixir-exunit"/>
-      <context ref="elixir-std"/>
-    </include>
-    </context>
-
   </definitions>
 
 </language>
