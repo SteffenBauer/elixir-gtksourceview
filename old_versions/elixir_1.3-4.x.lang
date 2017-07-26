@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.5.x
+ Covers Elixir 1.3.x and 1.4.x
 
 -->
 
@@ -175,7 +175,7 @@
       </context>
 
       <context ref="sigils"/>
-
+      
       <context id="kernel_special_chars" style-ref="builtin-name">
         <match extended="true">
           (\s|^)(alias|var|struct)\!|(\s|^)(match|(function|macro)_exported)\?|(\^(?=[\w]+))|((\\|&amp;|\|){2})|((-|\=|\|)&gt;)
@@ -256,7 +256,7 @@
         <keyword>and|or|not</keyword>
         <keyword>throw|raise|reraise</keyword>
         <keyword>hd|tl|in|length|elem|put_elem|destructure</keyword>
-        <keyword>to_(string|charlist)</keyword>
+        <keyword>to_(string|char_list|charlist)</keyword>
         <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|nil|number|pid|port|reference|tuple)</keyword>
         <keyword>(bit|byte|map|tuple)_size</keyword>
         <keyword>binary_part</keyword>
@@ -293,7 +293,6 @@
         <keyword>capture(_io|_log)</keyword>
         <keyword>register(_attribute|_test)</keyword>
         <keyword>using</keyword>
-        <keyword>(start|stop)_supervised</keyword>
       </context>
       <context ref="elixir-std"/>
     </include>

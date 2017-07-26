@@ -4,7 +4,7 @@ elixir-gtksourceview
 
 GtkSourceView syntax highlighting for the [Elixir programming language](http://elixir-lang.org/)
 
-Covers Elixir version 1.3.x and 1.4.x
+Covers Elixir version 1.5.x
 
 ## Usage: 
 
