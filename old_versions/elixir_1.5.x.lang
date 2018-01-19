@@ -4,7 +4,7 @@
  This file is to be used with GtkSourceView
 
  Author: Steffen Bauer <steffen.aus.karlsruhe@gmail.com>
- Copyright (C) 2013-2018 Steffen Bauer
+ Copyright (C) 2013-2017 Steffen Bauer
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.6.x
+ Covers Elixir 1.5.x
 
 -->
 
@@ -260,7 +260,7 @@
         <keyword>is_(atom|binary|bitstring|boolean|float|function|integer|list|map|nil|number|pid|port|reference|tuple)</keyword>
         <keyword>(bit|byte|map|tuple)_size</keyword>
         <keyword>binary_part</keyword>
-        <keyword>def(delegate|exception|guard|guardp|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
+        <keyword>def(delegate|exception|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
         <keyword>sigil_[crswCRSWDNT]</keyword>
         <keyword>if|else|unless|cond</keyword>
         <keyword>binding</keyword>
