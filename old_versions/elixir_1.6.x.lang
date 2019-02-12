@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.8.x
+ Covers Elixir 1.6.x
 
 -->
 
@@ -249,7 +249,6 @@
         <keyword>__MODULE__</keyword>
         <keyword>__aliases__</keyword>
         <keyword>__block__</keyword>
-        <keyword>__STACKTRACE__</keyword>
       </context>
 
       <context id="kernel" style-ref="builtin-name">
