@@ -4,7 +4,7 @@
  This file is to be used with GtkSourceView
 
  Author: Steffen Bauer <steffen.aus.karlsruhe@gmail.com>
- Copyright (C) 2013-2019 Steffen Bauer
+ Copyright (C) 2013-2018 Steffen Bauer
 
  GtkSourceView is free software; you can redistribute it and/or
  modify it under the terms of the GNU Lesser General Public
@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.8.x
+ Covers Elixir 1.6.x
 
 -->
 
@@ -247,13 +247,12 @@
         <keyword>__DIR__</keyword>
         <keyword>__ENV__</keyword>
         <keyword>__MODULE__</keyword>
-        <keyword>__STACKTRACE__</keyword>
         <keyword>__aliases__</keyword>
         <keyword>__block__</keyword>
       </context>
 
       <context id="kernel" style-ref="builtin-name">
-        <keyword>abs|trunc|rem|div|round|max|min|floor|ceil</keyword>
+        <keyword>abs|trunc|rem|div|round|max|min</keyword>
         <keyword>and|or|not</keyword>
         <keyword>throw|raise|reraise</keyword>
         <keyword>hd|tl|in|length|elem|put_elem|destructure</keyword>
