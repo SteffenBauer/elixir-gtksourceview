@@ -26,7 +26,7 @@
 
  GtkSourceView Syntax highlighting for the Elixir programming language
 
- Covers Elixir 1.9.x
+ Covers Elixir 1.8.x
 
 -->
 
@@ -62,12 +62,12 @@
     <context id="quoted-string">
     <include>
       <context id="multiline-double-quoted-string" style-ref="string">
-        <start>(~[crswCRSWDTNU])?"""</start>
+        <start>(~[crswCRSWDTN])?"""</start>
         <end>^\s*"""</end>
       </context>
 
       <context id="multiline-single-quoted-string" style-ref="string">
-        <start>(~[crswCRSWDTNU])?'''</start>
+        <start>(~[crswCRSWDTN])?'''</start>
         <end>^\s*'''</end>
       </context>
 
@@ -146,7 +146,7 @@
       </context>
 
       <context id="sigil-without-interpolation" style-ref="sigil">
-        <match>~[CRSWDTNU](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
+        <match>~[CRSWDTN](\((.)*?\)|\[(.)*?\]|\{(.)*?\}|&lt;(.)*?&gt;|\|(.)*?\||/(.)*/|"(.)*"|'(.)*')[fgimrsuxbac]*</match>
       </context>
     </include>
     </context>
@@ -262,7 +262,7 @@
         <keyword>(bit|byte|map|tuple)_size</keyword>
         <keyword>binary_part</keyword>
         <keyword>def(delegate|exception|guard|guardp|impl|macro|macrop|module|overridable|p|protocol|struct)?</keyword>
-        <keyword>sigil_[crswCRSWDNTU]</keyword>
+        <keyword>sigil_[crswCRSWDNT]</keyword>
         <keyword>if|else|unless|cond</keyword>
         <keyword>binding</keyword>
         <keyword>node|self|spawn|spawn_link|spawn_monitor|send|exit</keyword>
